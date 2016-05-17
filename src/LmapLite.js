@@ -43,7 +43,7 @@ function passMapEventsToEventProps(leafletMap, props) {
   });
 }
 
-export default class Lmap extends Component {
+export default class LmapLite extends Component {
   constructor(props) {
     super(props);
     this.handleZoomChange = this.handleZoomChange.bind(this);
@@ -82,6 +82,7 @@ export default class Lmap extends Component {
   }
 
   handleZoomChange() {
+    if (this.props.disableControl) { return; }
     const lmap = lmapNss.lmaps[this.props.lmapId];
     if (this.props.zoom !== undefined &&
         this.props.zoom !== lmap.leafletMap.getZoom()) {
@@ -93,6 +94,7 @@ export default class Lmap extends Component {
   }
 
   handleCenterChange() {
+    if (this.props.disableControl) { return; }
     const lmap = lmapNss.lmaps[this.props.lmapId];
     const mapCenter = lmap.leafletMap.getCenter();
     if (this.props.center !== undefined &&
@@ -113,7 +115,7 @@ export default class Lmap extends Component {
   }
 }
 
-Lmap.propTypes = Object.assign(
+LmapLite.propTypes = Object.assign(
   {
     lmapId: PropTypes.string.isRequired,
     onMapCreate: PropTypes.func,

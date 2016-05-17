@@ -1,4 +1,4 @@
-// TODO
-//
-// export const LMAP_DO_SOMETHING = 'LMAP_DO_SOMETHING';
-// export const LMAP_DO_SOMETHING_ELSE = 'LMAP_DO_SOMETHING_ELSE';
+export const LMAP_REGISTER = 'LMAP_REGISTER';
+export const LMAP_UNREGISTER = 'LMAP_UNREGISTER';
+export const LMAP_DOZOOM = 'LMAP_DOZOOM';
+export const LMAP_SETZOOM = 'LMAP_SETZOOM';

@@ -1,12 +1,18 @@
+WORK IN PROGRESS
+================
+
 Status
 ------
 
 - [x] Core `<LmapLite>` react component
-- [x] `defaultlayers` prop support
-- [ ] `layers` prop support
+- [x] `defaultLayers` prop support
+- [x] `layers` prop support
 - [x] Simple usage example
+- [x] Core `<Lmap>` react component connected to Redux store
+- [ ] Actions & action creators for Redux
+- [ ] More examples
+- [ ] Tests
 - [ ] Docs
-- [ ] Redux integration
 
 How to run the example
 ----------------------
