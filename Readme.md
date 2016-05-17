@@ -13,8 +13,10 @@ How to run the example
 
 ```sh
 git clone https://github.com/burmisov/react-redux-leaflet
+cd react-redux-leaflet
 npm install
 cd example
 node server
-open http://localhost:3000
 ```
+
+Open [http://localhost:3000](http://localhost:3000)
