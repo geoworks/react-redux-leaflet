@@ -81,24 +81,6 @@ export default class Lmap extends Component {
     delete lmapNss.lmaps[this.props.lmapId];
   }
 
-  handleViewChange() {
-    if (!this.props.disableControl) {
-      const controlOp = { type: 'op', op: {} };
-      let shouldControl = false;
-      if (this.props.zoom !== undefined) {
-        controlOp.op.targetZoom = this.props.zoom;
-        shouldControl = true;
-      }
-      if (this.props.center) {
-        controlOp.op.targetCenter = this.props.center;
-        shouldControl = true;
-      }
-      if (shouldControl) {
-        lmapNss.lmaps[this.props.lmapId].changer.enqueue([controlOp]);
-      }
-    }
-  }
-
   handleZoomChange() {
     const lmap = lmapNss.lmaps[this.props.lmapId];
     if (this.props.zoom !== undefined &&
