@@ -1,3 +1,5 @@
+import arrayDiff from './arrayDiff';
+
 const controllers = {
   attributionControl: (oldVal, newVal) => ([
     {
@@ -72,9 +74,16 @@ const controllers = {
     },
   ]),
 
-  // layers: (oldVal, newVal) => ([
-  //   // todo
-  // ]),
+  layers: (oldVal, newVal) => {
+    const { additions, deletions } = arrayDiff(oldVal, newVal);
+    return deletions.map(l => ({
+      type: 'do',
+      do: leafletMap => leafletMap.removeLayer(l),
+    })).concat(additions.map(l => ({
+      type: 'do',
+      do: leafletMap => leafletMap.addLayer(l),
+    })));
+  },
 
   maxBounds: (oldVal, newVal) => ([
     {
