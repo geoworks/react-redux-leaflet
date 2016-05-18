@@ -1,2 +1,2 @@
 import lmapsReducer from './lib/lmapsReducer';
-export default { lmapsReducer };
+export default { lmaps: lmapsReducer };

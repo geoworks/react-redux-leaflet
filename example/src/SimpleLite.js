@@ -1,5 +1,5 @@
 import React from 'react';
-import LmapLite from '../../src/LmapLite';
+import { LmapLite } from '../../src';
 import { Map } from 'immutable';
 import L from 'leaflet';
 
@@ -8,7 +8,7 @@ const SimpleLite = () => (
     <h4>Simple lite usage</h4>
     <div style={{ width: 300, height: 300 }}>
       <LmapLite
-        lmapId="myMap"
+        lmapId="simpleLite"
         defaultCenter={new Map({ x: 44, y: 56 })}
         defaultZoom={5}
         defaultLayers={

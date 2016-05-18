@@ -2,11 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+  context: path.resolve(__dirname, '..'),
   devtool: '#inline-source-map',
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    './src/index',
+    './example/src/index',
   ],
   output: {
     path: path.join(__dirname, 'dist'),
