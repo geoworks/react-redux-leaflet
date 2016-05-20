@@ -15,3 +15,4 @@ export const LMAP_MOUSE_UP = 'LMAP_MOUSE_UP';
 export const LMAP_MOUSE_OVER = 'LMAP_MOUSE_OVER';
 export const LMAP_MOUSE_OUT = 'LMAP_MOUSE_OUT';
 export const LMAP_MOUSE_MOVED = 'LMAP_MOUSE_MOVED';
+export const LMAP_SET_BOUNDS = 'LMAP_SET_BOUNDS';

@@ -16,6 +16,7 @@ import {
   LMAP_MOUSE_OVER,
   LMAP_MOUSE_OUT,
   LMAP_MOUSE_MOVED,
+  LMAP_SET_BOUNDS,
 } from './lib/actionTypes';
 
 import lmapItemReducer from './lib/lmapItemReducer';
@@ -115,4 +116,10 @@ export const mouseMoved = (latlng, point, lmapId) => ({
   lmapId,
   latlng,
   point,
+});
+
+export const setBounds = (bounds, lmapId) => ({
+  type: LMAP_SET_BOUNDS,
+  lmapId,
+  bounds,
 });

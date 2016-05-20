@@ -14,6 +14,7 @@ import {
   mouseOver,
   mouseOut,
   mouseMoved,
+  setBounds,
 } from '../actionCreators';
 
 /* TODO */ /* eslint-disable no-unused-vars */
@@ -29,11 +30,13 @@ const eventActionHooks = {
   onZoomEnd: (orgEvent, lmapId) => ([
     zoomEnded(lmapId),
     setZoom(lmapNss.lmaps[lmapId].leafletMap.getZoom(), lmapId),
+    setBounds(lmapNss.lmaps[lmapId].leafletMap.getBounds(), lmapId),
   ]),
 
   onMoveEnd: (orgEvent, lmapId) => ([
     moveEnded(lmapId),
     setCenter(lmapNss.lmaps[lmapId].leafletMap.getCenter(), lmapId),
+    setBounds(lmapNss.lmaps[lmapId].leafletMap.getBounds(), lmapId),
   ]),
 
   onPopupOpen: (orgEvent, lmapId) => ([

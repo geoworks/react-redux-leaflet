@@ -4,6 +4,9 @@ import { createSelector } from 'reselect';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Map } from 'immutable';
 
+import {
+  latlngBoundsToImXYmap, pointToImXYmap
+} from './lib/conversions';
 import lmapNss from './lmapNss';
 import LmapLite from './LmapLite';
 import optionList from './lib/optionList';
@@ -35,6 +38,8 @@ class Lmap extends Component {
     const initialMapState = new Map({
       center: new Map({ x: center.lat, y: center.lng }),
       zoom,
+      bounds: latlngBoundsToImXYmap(leafletMap.getBounds()),
+      size: pointToImXYmap(leafletMap.getSize()),
       isMoving: false,
       isZooming: false,
     });

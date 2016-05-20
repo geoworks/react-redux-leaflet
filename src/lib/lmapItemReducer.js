@@ -1,5 +1,9 @@
 import { Map } from 'immutable';
-import { latLngToImXYmap, pointToImXYmap } from './conversions';
+import {
+  latLngToImXYmap,
+  pointToImXYmap,
+  latlngBoundsToImXYmap,
+} from './conversions';
 
 import {
   LMAP_DOZOOM,
@@ -17,6 +21,7 @@ import {
   LMAP_MOUSE_OVER,
   LMAP_MOUSE_OUT,
   LMAP_MOUSE_MOVED,
+  LMAP_SET_BOUNDS,
 } from './actionTypes';
 
 const defaultState = new Map({
@@ -81,6 +86,9 @@ export default function lmapItemReducer(state = defaultState, action) {
         .setIn(['mousePixelCoords', 'x'], action.point.x)
         .setIn(['mousePixelCoords', 'y'], action.point.y)
       ;
+
+    case LMAP_SET_BOUNDS:
+      return state.set('bounds', latlngBoundsToImXYmap(action.bounds));
 
     default:
       return state;

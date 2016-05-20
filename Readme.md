@@ -12,6 +12,7 @@ Status
 - [x] Basic actions & action creators
 - [x] Redux store works and updating
 - [x] Advanced actions & action creators for Redux
+- [x] Advanced map state to store (bounds etc)
 - [ ] 'External' actions (panTo, zoomAround, etc)
 - [ ] More examples
 - [ ] Tests

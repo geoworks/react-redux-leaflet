@@ -21,6 +21,7 @@ import {
   LMAP_MOUSE_OVER,
   LMAP_MOUSE_OUT,
   LMAP_MOUSE_MOVED,
+  LMAP_SET_BOUNDS,
 } from './actionTypes';
 
 import lmapItemReducer from './lmapItemReducer';
@@ -50,6 +51,7 @@ export default function lmapMainReducer(state = defaultState, action) {
     case LMAP_MOUSE_OVER:
     case LMAP_MOUSE_OUT:
     case LMAP_MOUSE_MOVED:
+    case LMAP_SET_BOUNDS:
       return state.update(
         action.lmapId, lmap => lmapItemReducer(lmap, action)
       );
