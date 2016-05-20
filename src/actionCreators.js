@@ -9,6 +9,13 @@ import {
   LMAP_MOVE_STARTED,
   LMAP_MOVE_ENDED,
   LMAP_SET_CENTER,
+  LMAP_POPUP_OPENED,
+  LMAP_POPUP_CLOSED,
+  LMAP_MOUSE_DOWN,
+  LMAP_MOUSE_UP,
+  LMAP_MOUSE_OVER,
+  LMAP_MOUSE_OUT,
+  LMAP_MOUSE_MOVED,
 } from './lib/actionTypes';
 
 import lmapItemReducer from './lib/lmapItemReducer';
@@ -71,4 +78,41 @@ export const setZoom = (zoom, lmapId) => ({
   type: LMAP_SETZOOM,
   lmapId,
   zoom,
+});
+
+export const popupOpened = (lmapId) => ({
+  type: LMAP_POPUP_OPENED,
+  lmapId,
+});
+
+export const popupClosed = (lmapId) => ({
+  type: LMAP_POPUP_CLOSED,
+  lmapId,
+});
+
+export const mouseDown = (lmapId) => ({
+  type: LMAP_MOUSE_DOWN,
+  lmapId,
+});
+
+export const mouseUp = (lmapId) => ({
+  type: LMAP_MOUSE_UP,
+  lmapId,
+});
+
+export const mouseOver = (lmapId) => ({
+  type: LMAP_MOUSE_OVER,
+  lmapId,
+});
+
+export const mouseOut = (lmapId) => ({
+  type: LMAP_MOUSE_OUT,
+  lmapId,
+});
+
+export const mouseMoved = (latlng, point, lmapId) => ({
+  type: LMAP_MOUSE_MOVED,
+  lmapId,
+  latlng,
+  point,
 });

@@ -7,6 +7,13 @@ import {
   moveStarted,
   moveEnded,
   setCenter,
+  popupOpened,
+  popupClosed,
+  mouseUp,
+  mouseDown,
+  mouseOver,
+  mouseOut,
+  mouseMoved,
 } from '../actionCreators';
 
 /* TODO */ /* eslint-disable no-unused-vars */
@@ -33,37 +40,33 @@ const eventActionHooks = {
     setCenter(lmapNss.lmaps[lmapId].leafletMap.getCenter(), lmapId),
   ]),
 
-  onPopupOpen: (orgEvent, lmapId) => ([{
-    type: 'LMAP_EMPTY_ACTION',
-  }]),
+  onPopupOpen: (orgEvent, lmapId) => ([
+    popupOpened(lmapId),
+  ]),
 
-  onPopupClose: (orgEvent, lmapId) => ([{
-    type: 'LMAP_EMPTY_ACTION',
-  }]),
+  onPopupClose: (orgEvent, lmapId) => ([
+    popupClosed(lmapId),
+  ]),
 
-  onMouseDown: (orgEvent, lmapId) => ([{
-    type: 'LMAP_EMPTY_ACTION',
-  }]),
+  onMouseDown: (orgEvent, lmapId) => ([
+    mouseDown(lmapId),
+  ]),
 
-  onMouseUp: (orgEvent, lmapId) => ([{
-    type: 'LMAP_EMPTY_ACTION',
-  }]),
+  onMouseUp: (orgEvent, lmapId) => ([
+    mouseUp(lmapId),
+  ]),
 
-  onMouseOver: (orgEvent, lmapId) => ([{
-    type: 'LMAP_EMPTY_ACTION',
-  }]),
+  onMouseOver: (orgEvent, lmapId) => ([
+    mouseOver(lmapId),
+  ]),
 
-  onMouseOut: (orgEvent, lmapId) => ([{
-    type: 'LMAP_EMPTY_ACTION',
-  }]),
+  onMouseOut: (orgEvent, lmapId) => ([
+    mouseOut(lmapId),
+  ]),
 
-  onMouseMove: (orgEvent, lmapId) => ([{
-    type: 'LMAP_EMPTY_ACTION',
-  }]),
-
-  onZoomAnim: (orgEvent, lmapId) => ([{
-    type: 'LMAP_EMPTY_ACTION',
-  }]),
+  onMouseMove: (orgEvent, lmapId) => ([
+    mouseMoved(orgEvent.latlng, orgEvent.containerPoint, lmapId),
+  ]),
 };
 
 export default eventActionHooks;

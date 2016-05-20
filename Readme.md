@@ -11,7 +11,8 @@ Status
 - [x] Core `<Lmap>` react component connected to Redux store
 - [x] Basic actions & action creators
 - [x] Redux store works and updating
-- [ ] Advanced actions & action creators for Redux
+- [x] Advanced actions & action creators for Redux
+- [ ] 'External' actions (panTo, zoomAround, etc)
 - [ ] More examples
 - [ ] Tests
 - [ ] Docs

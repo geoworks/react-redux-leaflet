@@ -13,6 +13,14 @@ import {
   LMAP_MOVE_STARTED,
   LMAP_MOVE_ENDED,
   LMAP_SET_CENTER,
+  LMAP_RESIZED,
+  LMAP_POPUP_OPENED,
+  LMAP_POPUP_CLOSED,
+  LMAP_MOUSE_DOWN,
+  LMAP_MOUSE_UP,
+  LMAP_MOUSE_OVER,
+  LMAP_MOUSE_OUT,
+  LMAP_MOUSE_MOVED,
 } from './actionTypes';
 
 import lmapItemReducer from './lmapItemReducer';
@@ -34,7 +42,17 @@ export default function lmapMainReducer(state = defaultState, action) {
     case LMAP_MOVE_STARTED:
     case LMAP_MOVE_ENDED:
     case LMAP_SET_CENTER:
-      return state.update(action.lmapId, lmap => lmapItemReducer(lmap, action));
+    case LMAP_RESIZED:
+    case LMAP_POPUP_OPENED:
+    case LMAP_POPUP_CLOSED:
+    case LMAP_MOUSE_DOWN:
+    case LMAP_MOUSE_UP:
+    case LMAP_MOUSE_OVER:
+    case LMAP_MOUSE_OUT:
+    case LMAP_MOUSE_MOVED:
+      return state.update(
+        action.lmapId, lmap => lmapItemReducer(lmap, action)
+      );
 
     default:
       return state;
