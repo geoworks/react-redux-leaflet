@@ -1,11 +1,14 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import optionList from './lib/optionList';
-import eventList from './lib/eventList';
+import { Map } from 'immutable';
 
 import LmapLite from './LmapLite';
+import optionList from './lib/optionList';
+import eventList from './lib/eventList';
+import { registerLmap, unregisterLmap } from './actionCreators';
+import propsWithEventHooks from './lib/propsWithEventHooks';
 
 function mergePropsAndState(props, state) {
   const stateProps = {};
@@ -17,17 +20,57 @@ function mergePropsAndState(props, state) {
   return Object.assign(stateProps, props);
 }
 
-const Lmap = ({ lmapId, lmaps, enableControl = false, ...otherProps }) => (
-  <LmapLite
-    lmapId={lmapId}
-    disableControl={!enableControl}
-    {
-      ...(lmaps[lmapId] ?
-            mergePropsAndState(otherProps, lmaps[lmapId]) :
-            otherProps)
+class Lmap extends Component {
+  constructor(props) {
+    super(props);
+    this.handleMapCreate = this.handleMapCreate.bind(this);
+    this.handleMapDestroy = this.handleMapDestroy.bind(this);
+  }
+
+  handleMapCreate(lmap) {
+    const initialMapState = new Map(); // TODO
+    this.props.dispatch(registerLmap(
+      initialMapState,
+      this.props.lmapId
+    ));
+    if (this.props.onMapCreate) {
+      this.props.onMapCreate(lmap);
     }
-  />
-);
+  }
+
+  handleMapDestroy(evtData) {
+    this.props.dispatch(unregisterLmap(this.props.lmapId));
+    if (this.props.onUnload) {
+      this.props.onUnload(evtData);
+    }
+  }
+
+  render() {
+    const {
+      lmapId, lmaps, enableControl = false,
+      dispatch, ...otherProps,
+    } = this.props;
+    let propsToPass = lmaps.get(lmapId) ?
+      mergePropsAndState(otherProps, lmaps.get(lmapId)) :
+      otherProps
+    ;
+    propsToPass = propsWithEventHooks({
+      originalProps: propsToPass,
+      dispatch,
+      lmapId,
+    });
+    return (
+      <LmapLite
+        { ...propsToPass }
+        lmapId={lmapId}
+        dispatch={dispatch}
+        onMapCreate={this.handleMapCreate}
+        onUnload={this.handleMapDestroy}
+        disableControl={!enableControl}
+      />
+    );
+  }
+}
 
 Lmap.propTypes = Object.assign(
   {

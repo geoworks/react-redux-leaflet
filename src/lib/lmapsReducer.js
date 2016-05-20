@@ -6,8 +6,13 @@ import {
   LMAP_UNREGISTER,
 
   // Lmap item actions
+  LMAP_ZOOM_STARTED,
+  LMAP_ZOOM_ENDED,
   LMAP_DOZOOM,
   LMAP_SETZOOM,
+  LMAP_MOVE_STARTED,
+  LMAP_MOVE_ENDED,
+  LMAP_SET_CENTER,
 } from './actionTypes';
 
 import lmapItemReducer from './lmapItemReducer';
@@ -24,6 +29,11 @@ export default function lmapMainReducer(state = defaultState, action) {
 
     case LMAP_SETZOOM: /* falls through */
     case LMAP_DOZOOM:
+    case LMAP_ZOOM_STARTED:
+    case LMAP_ZOOM_ENDED:
+    case LMAP_MOVE_STARTED:
+    case LMAP_MOVE_ENDED:
+    case LMAP_SET_CENTER:
       return state.update(action.lmapId, lmap => lmapItemReducer(lmap, action));
 
     default:

@@ -9,7 +9,9 @@ Status
 - [x] `layers` prop support
 - [x] Simple usage example
 - [x] Core `<Lmap>` react component connected to Redux store
-- [ ] Actions & action creators for Redux
+- [x] Basic actions & action creators
+- [x] Redux store works and updating
+- [ ] Advanced actions & action creators for Redux
 - [ ] More examples
 - [ ] Tests
 - [ ] Docs

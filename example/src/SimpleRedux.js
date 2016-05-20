@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lmap, reducers as lmapReducers } from '../../src';
+import { Lmap, reducers as lmapReducers, actionCreators } from '../../src';
 import { Map } from 'immutable';
 import L from 'leaflet';
 import { createStore } from 'redux';
@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { combineReducers } from 'redux-immutablejs';
 
 const simpleReduxStore = createStore(combineReducers(lmapReducers));
+const { dispatch } = simpleReduxStore;
 
 const SimpleRedux = () => (
   <Provider store={simpleReduxStore}>
@@ -22,6 +23,9 @@ const SimpleRedux = () => (
           }
         />
       </div>
+      <button onClick={() => dispatch(actionCreators.setZoom(15, 'simpleRedux'))}>
+        Zoom In
+      </button>
     </div>
   </Provider>
 );
