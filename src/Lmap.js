@@ -4,6 +4,7 @@ import { createSelector } from 'reselect';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Map } from 'immutable';
 
+import lmapNss from './lmapNss';
 import LmapLite from './LmapLite';
 import optionList from './lib/optionList';
 import eventList from './lib/eventList';
@@ -28,7 +29,15 @@ class Lmap extends Component {
   }
 
   handleMapCreate(lmap) {
-    const initialMapState = new Map(); // TODO
+    const leafletMap = lmapNss.lmaps[this.props.lmapId].leafletMap;
+    const center = leafletMap.getCenter();
+    const zoom = leafletMap.getZoom();
+    const initialMapState = new Map({
+      center: new Map({ x: center.lat, y: center.lng }),
+      zoom,
+      isMoving: false,
+      isZooming: false,
+    });
     this.props.dispatch(registerLmap(
       initialMapState,
       this.props.lmapId

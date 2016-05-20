@@ -22,9 +22,10 @@ const eventActionHooks = {
     mapResized(lmapNss.lmaps[lmapId].leafletMap.getSize(), lmapId),
   ]),
 
-  onViewReset: (orgEvent, lmapId) => ([{
-    type: 'LMAP_EMPTY_ACTION',
-  }]),
+  onViewReset: (orgEvent, lmapId) => {
+    console.log('view-reset');
+    return [];
+  },
 
   onZoomStart: (orgEvent, lmapId) => ([zoomStarted(lmapId)]),
 
