@@ -5,6 +5,7 @@ import L from 'leaflet';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { combineReducers } from 'redux-immutablejs';
+import ShowMapStore from './ShowMapStore';
 
 const simpleReduxStore = createStore(combineReducers(lmapReducers));
 const { dispatch } = simpleReduxStore;
@@ -26,6 +27,8 @@ const SimpleRedux = () => (
       <button onClick={() => dispatch(actionCreators.setZoom(15, 'simpleRedux'))}>
         Zoom In
       </button>
+      <h5>Redux store state for current map:</h5>
+      <ShowMapStore lmapId="simpleRedux" />
     </div>
   </Provider>
 );
