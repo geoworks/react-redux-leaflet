@@ -38,7 +38,8 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "test": "eslint ."
+    "test": "eslint .",
+    "example": "node example/server"
   },
   "author": "",
   "license": "MIT"
