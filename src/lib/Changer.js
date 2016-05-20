@@ -28,7 +28,7 @@ const doSetView = (leafletMap, center, zoom) => {
   leafletMap.setView([center.get('x'), center.get('y')], zoom);
 };
 
-const OP_DEBOUNCE_DELAY = 75; // ms
+const OP_DEBOUNCE_DELAY = 5; // ms
 
 export default class Changer {
   constructor(leafletMap) {

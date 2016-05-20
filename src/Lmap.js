@@ -59,8 +59,9 @@ class Lmap extends Component {
       lmapId, lmaps, enableControl = false,
       dispatch, ...otherProps,
     } = this.props;
+    const lmapState = lmaps.get(lmapId);
     let propsToPass = lmaps.get(lmapId) ?
-      mergePropsAndState(otherProps, lmaps.get(lmapId)) :
+      mergePropsAndState(otherProps, lmapState) :
       otherProps
     ;
     propsToPass = propsWithEventHooks({
@@ -68,9 +69,13 @@ class Lmap extends Component {
       dispatch,
       lmapId,
     });
+    const isAnimating = lmapState &&
+      (lmapState.get('isMoving') || lmapState.get('isZooming'))
+    ;
     return (
       <LmapLite
         { ...propsToPass }
+        isAnimating={isAnimating}
         lmapId={lmapId}
         dispatch={dispatch}
         onMapCreate={this.handleMapCreate}

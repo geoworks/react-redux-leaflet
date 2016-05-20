@@ -67,7 +67,10 @@ export default class LmapLite extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const ops = compare(this.props, nextProps);
+    let ops = compare(this.props, nextProps);
+    if (this.props.isAnimating) {
+      ops = ops.filter(op => op.type !== 'op');
+    }
     lmapNss.lmaps[this.props.lmapId].changer.enqueue(ops);
   }
 
@@ -120,6 +123,7 @@ LmapLite.propTypes = Object.assign(
     lmapId: PropTypes.string.isRequired,
     onMapCreate: PropTypes.func,
     disableControl: PropTypes.bool,
+    isAnimating: PropTypes.bool,
   },
   Object.keys(eventList).reduce(
     (prev, cur) => Object.assign(prev, { [cur]: PropTypes.func }), {}
