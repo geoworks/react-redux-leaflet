@@ -14,9 +14,21 @@ Status
 - [x] Advanced actions & action creators for Redux
 - [x] Advanced map state to store (bounds etc)
 - [x] zoomAround, etc
+- [ ] Selector creators
 - [ ] More examples
 - [ ] Tests
-- [ ] Docs
+
+Docs plan:
+- [ ] API Overview
+- [ ] LmapLite component
+- [ ] Lmap component
+- [ ] Redux store structure
+- [ ] Action list
+- [ ] NSS data
+- [ ] Leaflet Map API --> react-redux-leaflet API mappings
+- [ ] Create a local tiled map storage
+- [ ] Full working LmapLite component with all props to change & events to subscribe to.
+- [ ] Full working Lmap component with all props & events & action creators.
 
 How to run the example
 ----------------------
