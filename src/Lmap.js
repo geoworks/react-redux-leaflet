@@ -5,7 +5,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Map } from 'immutable';
 
 import {
-  latlngBoundsToImXYmap, pointToImXYmap
+  latlngBoundsToImXYmap,
+  pointToImXYmap,
 } from './lib/conversions';
 import lmapNss from './lmapNss';
 import LmapLite from './LmapLite';
@@ -40,6 +41,8 @@ class Lmap extends Component {
       zoom,
       bounds: latlngBoundsToImXYmap(leafletMap.getBounds()),
       size: pointToImXYmap(leafletMap.getSize()),
+      minZoom: leafletMap.getMinZoom(),
+      maxZoom: leafletMap.getMaxZoom(),
       isMoving: false,
       isZooming: false,
     });

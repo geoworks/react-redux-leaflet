@@ -1,11 +1,5 @@
 import { Map } from 'immutable';
 import {
-  latLngToImXYmap,
-  pointToImXYmap,
-  latlngBoundsToImXYmap,
-} from './conversions';
-
-import {
   LMAP_DOZOOM,
   LMAP_SETZOOM,
   LMAP_ZOOM_STARTED,
@@ -22,6 +16,10 @@ import {
   LMAP_MOUSE_OUT,
   LMAP_MOUSE_MOVED,
   LMAP_SET_BOUNDS,
+  LMAP_SET_VIEW,
+  LMAP_SET_MIN_ZOOM,
+  LMAP_SET_MAX_ZOOM,
+  LMAP_SET_MAX_BOUNDS,
 } from './actionTypes';
 
 const defaultState = new Map({
@@ -52,10 +50,10 @@ export default function lmapItemReducer(state = defaultState, action) {
       return state.set('isMoving', false);
 
     case LMAP_SET_CENTER:
-      return state.set('center', latLngToImXYmap(action.center));
+      return state.set('center', action.center);
 
     case LMAP_RESIZED:
-      return state.set('size', pointToImXYmap(action.newSize));
+      return state.set('size', action.newSize);
 
     case LMAP_POPUP_OPENED:
       return state.set('isPopupOpen', true);
@@ -88,7 +86,22 @@ export default function lmapItemReducer(state = defaultState, action) {
       ;
 
     case LMAP_SET_BOUNDS:
-      return state.set('bounds', latlngBoundsToImXYmap(action.bounds));
+      return state.set('bounds', action.bounds);
+
+    case LMAP_SET_VIEW:
+      return state
+        .set('center', action.center)
+        .set('zoom', action.zoom)
+      ;
+
+    case LMAP_SET_MIN_ZOOM:
+      return state.set('minZoom', action.minZoom);
+
+    case LMAP_SET_MAX_ZOOM:
+      return state.set('maxZoom', action.maxZoom);
+
+    case LMAP_SET_MAX_BOUNDS:
+      return state.set('maxBounds', action.maxBounds);
 
     default:
       return state;

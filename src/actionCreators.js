@@ -17,9 +17,19 @@ import {
   LMAP_MOUSE_OUT,
   LMAP_MOUSE_MOVED,
   LMAP_SET_BOUNDS,
+  LMAP_SET_VIEW,
+  LMAP_SET_MIN_ZOOM,
+  LMAP_SET_MAX_ZOOM,
+  LMAP_SET_MAX_BOUNDS,
 } from './lib/actionTypes';
-
+import lmapNss from './lmapNss';
 import lmapItemReducer from './lib/lmapItemReducer';
+import {
+  latLngToImXYmap,
+  pointToImXYmap,
+  latlngBoundsToImXYmap,
+  xyMapTolatlngBounds,
+} from './lib/conversions';
 
 const defaultMapState = lmapItemReducer(undefined, { type: null });
 
@@ -39,7 +49,7 @@ export const unregisterLmap = (lmapId) => ({
 export const mapResized = (newSize, lmapId) => ({
   type: LMAP_RESIZED,
   lmapId,
-  newSize,
+  newSize: pointToImXYmap(newSize),
 });
 
 export const zoomStarted = (lmapId) => ({
@@ -65,9 +75,8 @@ export const moveEnded = (lmapId) => ({
 export const setCenter = (center, lmapId) => ({
   type: LMAP_SET_CENTER,
   lmapId,
-  center,
+  center: latLngToImXYmap(center),
 });
-
 
 export const doZoom = (zoomIncrement, lmapId) => ({
   type: LMAP_DOZOOM,
@@ -111,6 +120,10 @@ export const mouseOut = (lmapId) => ({
   lmapId,
 });
 
+// As an exception this high freq mouse event fires passes
+// L.LatLng and Point types, to save an extra conversion step
+// at reducer side, which would otherwise create many new objects
+// of Immutable.Map type.
 export const mouseMoved = (latlng, point, lmapId) => ({
   type: LMAP_MOUSE_MOVED,
   lmapId,
@@ -121,5 +134,88 @@ export const mouseMoved = (latlng, point, lmapId) => ({
 export const setBounds = (bounds, lmapId) => ({
   type: LMAP_SET_BOUNDS,
   lmapId,
-  bounds,
+  bounds: latlngBoundsToImXYmap(bounds),
+});
+
+export const setView = (center, zoom, lmapId) => ({
+  type: LMAP_SET_VIEW,
+  lmapId,
+  center: latLngToImXYmap(center),
+  zoom,
+});
+
+export const setZoomAroundGeoPoint = (center, zoom, lmapId) => {
+  // Modeled after leaflet implementation.
+  const { leafletMap } = lmapNss.lmaps[lmapId];
+  const scale = leafletMap.getZoomScale(zoom);
+  const viewHalf = leafletMap.getSize().divideBy(2);
+  const containerPoint = leafletMap.latLngToContainerPoint(center);
+  const centerOffset = containerPoint
+    .subtract(viewHalf)
+    .multiplyBy(1 - 1 / scale)
+  ;
+  const newCenter = leafletMap.containerPointToLatLng(
+    (viewHalf.add(centerOffset))
+  );
+  return {
+    type: LMAP_SET_VIEW,
+    lmapId,
+    center: latLngToImXYmap(newCenter),
+    zoom,
+  };
+};
+
+export const setZoomAroundPixelPoint = (point, zoom, lmapId) => {
+  // Modeled after leaflet implementation.
+  const { leafletMap } = lmapNss.lmaps[lmapId];
+  const scale = leafletMap.getZoomScale(zoom);
+  const viewHalf = leafletMap.getSize().divideBy(2);
+  const containerPoint = point;
+  const centerOffset = containerPoint
+    .subtract(viewHalf)
+    .multiplyBy(1 - 1 / scale)
+  ;
+  const newCenter = leafletMap.containerPointToLatLng(
+    (viewHalf.add(centerOffset))
+  );
+  return {
+    type: LMAP_SET_VIEW,
+    lmapId,
+    center: latLngToImXYmap(newCenter),
+    zoom,
+  };
+};
+
+export const fitBounds = (bounds, lmapId) => {
+  // Relies on Leaflet internal API. Maybe dangerous.
+  const { leafletMap } = lmapNss.lmaps[lmapId];
+  const latLngBounds = xyMapTolatlngBounds(bounds);
+  /* eslint-disable no-underscore-dangle */
+  const { center, zoom } =
+    leafletMap._getBoundsCenterZoom(latLngBounds)
+  ;
+  return {
+    type: LMAP_SET_VIEW,
+    lmapId,
+    center: latLngToImXYmap(center),
+    zoom,
+  };
+};
+
+export const setMinZoom = (minZoom, lmapId) => ({
+  type: LMAP_SET_MIN_ZOOM,
+  lmapId,
+  minZoom,
+});
+
+export const setMaxZoom = (maxZoom, lmapId) => ({
+  type: LMAP_SET_MAX_ZOOM,
+  lmapId,
+  maxZoom,
+});
+
+export const setMaxBounds = (maxBounds, lmapId) => ({
+  type: LMAP_SET_MAX_BOUNDS,
+  lmapId,
+  maxBounds: latlngBoundsToImXYmap(maxBounds),
 });
