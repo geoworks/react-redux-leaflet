@@ -1,0 +1,5 @@
+npm test
+webpack
+cat index.dist.js > index.js
+npm publish
+cat index.src.js > index.js
