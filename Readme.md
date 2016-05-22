@@ -30,6 +30,10 @@ Docs plan:
 - [ ] Full working LmapLite component with all props to change & events to subscribe to.
 - [ ] Full working Lmap component with all props & events & action creators.
 
+Immediate plan:
+- [ ] Make build system
+- [ ] Create gh-pages site
+
 How to run the example
 ----------------------
 
