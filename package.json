@@ -52,6 +52,6 @@
     "leaflet",
     "react",
     "redux",
-    "mapping",
-  ],
+    "mapping"
+  ]
 }
