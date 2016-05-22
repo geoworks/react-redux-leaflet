@@ -1,1 +1,4 @@
-exclude: ["build/"]
+# Jekyll global config
+# See http://jekyllrb.com/docs/configuration/#global-configuration
+
+exclude: ["build/", "src/", "package.json", "webpack.config.js"]
