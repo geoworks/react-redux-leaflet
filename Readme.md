@@ -19,6 +19,8 @@ Status
 - [ ] Tests
 
 Docs plan:
+- [x] Create a local tiled map storage
+- [x] Create gh-pages site stub
 - [ ] API Overview
 - [ ] LmapLite component
 - [ ] Lmap component
@@ -26,13 +28,8 @@ Docs plan:
 - [ ] Action list
 - [ ] NSS data
 - [ ] Leaflet Map API --> react-redux-leaflet API mappings
-- [ ] Create a local tiled map storage
 - [ ] Full working LmapLite component with all props to change & events to subscribe to.
 - [ ] Full working Lmap component with all props & events & action creators.
-
-Immediate plan:
-- [x] Make build system
-- [ ] Create gh-pages site
 
 How to run the example
 ----------------------
