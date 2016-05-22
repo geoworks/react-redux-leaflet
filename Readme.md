@@ -31,7 +31,7 @@ Docs plan:
 - [ ] Full working Lmap component with all props & events & action creators.
 
 Immediate plan:
-- [ ] Make build system
+- [x] Make build system
 - [ ] Create gh-pages site
 
 How to run the example
