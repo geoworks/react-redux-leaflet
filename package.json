@@ -1,11 +1,12 @@
 {
   "name": "rrl-ghpages",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "react-redux-leaflet help site",
   "main": "index.js",
   "scripts": {
     "test": "eslint .",
-    "build": "webpack"
+    "build": "webpack",
+    "dev": "webpack --config webpack.dev.config.js"
   },
   "repository": {
     "type": "git",
@@ -36,11 +37,12 @@
     "react-dom": "^15.1.0",
     "react-immutable-proptypes": "^1.7.1",
     "react-redux": "^4.4.5",
-    "react-redux-leaflet": "^0.2.0",
+    "react-redux-leaflet": "^0.3.0",
     "redux": "^3.5.2",
     "redux-immutablejs": "0.0.8",
     "reselect": "^2.5.1",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.1"
   }
 }
