@@ -5,7 +5,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'react-redux-leaflet.js',
-    library: 'react-redux-leaflet',
     libraryTarget: 'commonjs',
   },
   module: {
