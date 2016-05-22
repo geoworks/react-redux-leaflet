@@ -40,7 +40,7 @@
     "test": "eslint .",
     "example": "node example/server",
     "build": "webpack",
-    "publish": "srcipts/publish"
+    "publish": "./scripts/publish"
   },
   "author": "Sergey Burmisov (github.com/burmisov)",
   "license": "MIT",
