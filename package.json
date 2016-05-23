@@ -1,6 +1,6 @@
 {
   "name": "rrl-ghpages",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "react-redux-leaflet help site",
   "main": "index.js",
   "scripts": {
@@ -37,7 +37,7 @@
     "react-dom": "^15.1.0",
     "react-immutable-proptypes": "^1.7.1",
     "react-redux": "^4.4.5",
-    "react-redux-leaflet": "^0.3.0",
+    "react-redux-leaflet": "^0.4.0",
     "redux": "^3.5.2",
     "redux-immutablejs": "0.0.8",
     "reselect": "^2.5.1",
