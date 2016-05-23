@@ -41,13 +41,13 @@ const optionList = {
 
   // http://leafletjs.com/reference-1.0.0.html#map-zoomdelta
   zoomDelta: {
-    defaultName: 'zoomDelta',
+    defaultName: 'defaultZoomDelta',
     propType: PropTypes.number,
   },
 
   // http://leafletjs.com/reference-1.0.0.html#map-trackresize
   trackResize: {
-    defaultName: 'trackResize',
+    defaultName: 'defaultTrackResize',
     propType: PropTypes.bool,
   },
 
