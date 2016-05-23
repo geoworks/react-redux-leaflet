@@ -146,7 +146,7 @@ const optionList = {
 
   // http://leafletjs.com/reference-1.0.0.html#map-markerzoomanimation
   markerZoomAnimation: {
-    defaultName: 'defaultZoomAnimation',
+    defaultName: 'defaultMarkerZoomAnimation',
     propType: PropTypes.bool,
   },
 
