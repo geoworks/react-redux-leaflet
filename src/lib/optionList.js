@@ -217,7 +217,7 @@ const optionList = {
 
   // http://leafletjs.com/reference-1.0.0.html#map-keyboardpandelta
   keyboardPanDelta: {
-    defaultName: 'default',
+    defaultName: 'defaultKeyboardPanDelta',
     propType: PropTypes.number,
   },
 
