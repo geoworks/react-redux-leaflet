@@ -1,27 +1,30 @@
 require('leaflet/dist/leaflet.css');
 
 import React from 'react';
-import { LmapLite } from 'react-redux-leaflet';
-import { Map } from 'immutable';
-import L from 'leaflet';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Drawer from 'material-ui/Drawer';
+import LmapContainer from './LmapContainer';
+import CentralPane from './CentralPane';
 
 const App = () => (
-  <div style={{ height: 400 }}>
-    <LmapLite
-      defaultCenter={new Map({ x: 0, y: 0 })}
-      defaultZoom={2}
-      defaultLayers={[
-        L.tileLayer('osmtiles/{z}/{x}/{y}.png', {
-          attribution: `
-            &copy; <a href="http://osm.org/copyright">
-            OpenStreetMap</a> contributors',
-          `,
-        }),
-      ]}
-      defaultMinZoom={0}
-      defaultMaxZoom={5}
-    />
-  </div>
+  <MuiThemeProvider muiTheme={getMuiTheme()}>
+    <span>
+      <Drawer
+        disableSwipeToOpen
+        docked
+        open
+        width={300}
+      >
+        <div style={{ height: '100%' }}>
+          <LmapContainer />
+        </div>
+      </Drawer>
+      <div style={{ marginLeft: 310 }}>
+        <CentralPane />
+      </div>
+    </span>
+  </MuiThemeProvider>
 );
 
 export default App;

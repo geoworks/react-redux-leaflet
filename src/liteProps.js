@@ -1,512 +1,658 @@
+import L from 'leaflet';
 import { Map } from 'immutable';
 
 const liteProps = {
+  // LmapLite "Native" props
+
+  lmapId: {
+    descr: 'Lmap unique Id (string), a required property.',
+    type: 'string',
+    required: true,
+    leafletName: false,
+    leafletDocUrl: false,
+    defaultValue: 'myLmap',
+  },
+
+  MapCreate: {
+    descr: 'Event fired after map DOM elemtn has been mounted and leaflet map has been created.',
+    type: 'function',
+    leafletName: false,
+    leafletDocUrl: false,
+  },
+
+  disableControl: {
+    descr: '-- Missing property description --',
+    type: 'boolean',
+    leafletName: false,
+    leafletDocUrl: false,
+  },
+
+  isAnimating: {
+    descr: '-- Missing property description --',
+    type: 'boolean',
+    leafletName: false,
+    leafletDocUrl: false,
+  },
+
+  // Leaflet "inherited" props
+
   defaultPreferCanvas: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'preferCanvas',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-prefercanvas',
   },
 
   attributionControl: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'attributionControl',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-attributioncontrol',
   },
 
   defaultAttributionControl: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'attributionControl',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-attributioncontrol',
   },
 
   zoomControl: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'zoomControl',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoomcontrol',
   },
 
   defaultZoomControl: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'zoomControl',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoomcontrol',
   },
 
   defaultClosePopupOnClick: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'closePopupOnClick',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-closepopuponclick',
   },
 
   defaultZoomSnap: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'zoomSnap',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoomsnap',
   },
 
   defaultZoomDelta: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'zoomDelta',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoomdelta',
   },
 
   defaultTrackResize: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'trackResize',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-trackresize',
   },
 
   boxZoom: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'boxZoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-boxzoom',
   },
 
   defaultBoxZoom: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'boxZoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-boxzoom',
   },
 
   doubleClickZoom: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'doubleClickZoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-doubleclickzoom',
   },
 
   defaultDoubleClickZoom: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'doubleClickZoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-doubleclickzoom',
   },
 
   dragging: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'dragging',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-dragging',
   },
 
   defaultDragging: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'dragging',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-dragging',
   },
 
   defaultCrs: {
-    type: Object,
+    descr: '-- Missing property description --',
+    type: 'object',
     leafletName: 'crs',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-crs',
   },
 
   center: {
-    type: Map,
+    descr: '-- Missing property description --',
+    type: 'map',
+    subType: 'xy',
     leafletName: 'center',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-center',
   },
 
   defaultCenter: {
-    type: Map,
+    descr: '-- Missing property description --',
+    type: 'map',
+    subType: 'xy',
     leafletName: 'center',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-center',
+    defaultValue: new Map({ x: 30, y: 30 }),
   },
 
   zoom: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'zoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoom',
   },
 
   defaultZoom: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'zoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoom',
   },
 
   minZoom: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'minZoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-minzoom',
   },
 
   defaultMinZoom: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'minZoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-minzoom',
   },
 
   maxZoom: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'maxZoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-maxzoom',
   },
 
   defaultMaxZoom: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'maxZoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-maxzoom',
+    defaultValue: 5,
   },
 
   layers: {
-    type: Array,
+    descr: '-- Missing property description --',
+    type: 'array',
     leafletName: 'layers',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-layers',
+    possibleValues: {
+      descr: '-- Missing property description --',
+      undefined,
+      '[]': [],
+      "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']":
+        () => [L.tileLayer('osmtiles/{z}/{x}/{y}.png')],
+      "[L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png']":
+        () => [L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png')],
+    },
+    defaultValue: 'undefined',
   },
 
   defaultLayers: {
-    type: Array,
+    descr: '-- Missing property description --',
+    type: 'array',
     leafletName: 'layers',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-layers',
+    possibleValues: {
+      descr: '-- Missing property description --',
+      undefined,
+      '[]': [],
+      "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']":
+        () => [L.tileLayer('osmtiles/{z}/{x}/{y}.png')],
+      "[L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png']":
+        () => [L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png')],
+    },
+    defaultValue: "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']",
   },
 
   maxBounds: {
-    type: Map,
+    descr: '-- Missing property description --',
+    type: 'map',
+    subType: 'x1y1x2y2',
     leafletName: 'maxBounds',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-maxbounds',
   },
 
   defaultMaxBounds: {
-    type: Map,
+    descr: '-- Missing property description --',
+    type: 'map',
+    subType: 'x1y1x2y2',
     leafletName: 'maxBounds',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-maxbounds',
   },
 
   defaultRenderer: {
-    type: Object,
+    descr: '-- Missing property description --',
+    type: 'object',
     leafletName: 'renderer',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-renderer',
   },
 
   defaultFadeAnimation: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'fadeAnimation',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-fadeanimation',
   },
 
   defaultMarkerZoomAnimation: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'markerZoomAnimation',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-markerzoomanimation',
   },
 
   defaultTransform3DLimit: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'transform3DLimit',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-transform3dlimit',
   },
 
   defaultZoomAnimation: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'zoomAnimation',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoomanimation',
   },
 
   defaultZoomAnimationThreshold: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'zoomAnimationThreshold',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoomanimationthreshold',
   },
 
   defaultInertia: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'inertia',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-inertia',
   },
 
   defaultInertiaDeceleration: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'inertiaDeceleration',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-inertiadeceleration',
   },
 
   defaultInertiaMaxSpeed: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'inertiaMaxSpeed',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-inertiamaxspeed',
   },
 
   defaultEaseLinearity: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'easeLinearity',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-easelinearity',
   },
 
   defaultWorldCopyJump: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'worldCopyJump',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-worldcopyjump',
   },
 
   defaultMaxBoundsViscosity: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'maxBoundsViscosity',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-maxboundsviscosity',
   },
 
   keyboard: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'keyboard',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-keyboard',
   },
 
   defaultKeyboard: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'keyboard',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-keyboard',
   },
 
   defaultKeyboardPanDelta: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'keyboardPanDelta',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-keyboardpandelta',
   },
 
   scrollWheelZoom: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'scrollWheelZoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-scrollwheelzoom',
   },
 
   defaultScrollWheelZoom: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'scrollWheelZoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-scrollwheelzoom',
   },
 
   defaultWheelDebounceTime: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'wheelDebounceTime',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-wheeldebouncetime',
   },
 
   defaultWheelPxPerZoomLevel: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'wheelPxPerZoomLevel',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-wheelpxperzoomlevel',
   },
 
   tap: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'tap',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-tap',
   },
 
   defaultTap: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'tap',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-tap',
   },
 
   defaultTapTolerance: {
-    type: Number,
+    descr: '-- Missing property description --',
+    type: 'number',
     leafletName: 'tapTolerance',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-taptolerance',
   },
 
   touchZoom: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'touchZoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-touchzoom',
   },
 
   defaultTouchZoom: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'touchZoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-touchzoom',
   },
 
   defaultBounceAtZoomLimits: {
-    type: Boolean,
+    descr: '-- Missing property description --',
+    type: 'boolean',
     leafletName: 'bounceAtZoomLimits',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-bounceatzoomlimits',
   },
 
   onBaseLayerChange: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'baselayerchange',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-baselayerchange',
   },
 
   onOverlayAdd: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'overlayadd',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-overlayadd',
   },
 
   onOverlayRemove: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'overlayremove',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-overlayremove',
   },
 
   onLayerAdd: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'layeradd',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-layeradd',
   },
 
   onLayerRemove: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'layerremove',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-layerremove',
   },
 
   onZoomLevelsChange: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'zoomlevelschange',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoomlevelschange',
   },
 
   onResize: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'resize',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-resize',
   },
 
   onUnload: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'unload',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-unload',
   },
 
   onViewReset: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'viewreset',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-viewreset',
   },
 
   onLoad: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'load',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-load',
   },
 
   onZoomStart: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'zoomstart',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoomstart',
   },
 
   onMoveStart: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'movestart',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-movestart',
   },
 
   onZoom: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'zoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoom',
   },
 
   onMove: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'move',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-move',
   },
 
   onZoomEnd: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'zoomend',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoomend',
   },
 
   onMoveEnd: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'moveend',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-moveend',
   },
 
   onPopupOpen: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'popupopen',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-popupopen',
   },
 
   onPopupClose: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'popupclose',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-popupclose',
   },
 
   onAutoPanStart: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'autopanstart',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-autopanstart',
   },
 
   onClick: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'click',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-click',
   },
 
   onDblClick: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'dblclick',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-dblclick',
   },
 
   onMouseDown: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'mousedown',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-mousedown',
   },
 
   onMouseUp: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'mouseup',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-mouseup',
   },
 
   onMouseOver: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'mouseover',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-mouseover',
   },
 
   onMouseOut: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'mouseout',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-mouseout',
   },
 
   onMouseMove: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'mousemove',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-mousemove',
   },
 
   onContextMenu: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'contextmenu',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-contextmenu',
   },
 
   onKeyPress: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'keypress',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-keypress',
   },
 
   onPreClick: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'preclick',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-preclick',
   },
 
   onZoomAnim: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'zoomanim',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoomanim',
   },
 
   onLocationError: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'locationerror',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-locationerror',
   },
 
   onLocationFound: {
-    type: Function,
+    descr: '-- Missing property description --',
+    type: 'function',
     leafletName: 'locationfound',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-locationfound',
   },
