@@ -4,6 +4,7 @@ import liteProps from './liteProps';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import ContentClear from 'material-ui/svg-icons/content/clear';
+import Paper from 'material-ui/Paper';
 
 class PropList extends Component {
   constructor(props) {
@@ -58,11 +59,9 @@ class PropList extends Component {
         }
         {
           filteredProps.length === 0 ?
-            <div>
-              <p>
-                Nothing found for <strong>"{this.state.searchTerm}"</strong>
-              </p>
-            </div>
+            <Paper zDepth={0}>
+              Nothing found for <strong>"{this.state.searchTerm}"</strong>
+            </Paper>
             : null
         }
       </div>
