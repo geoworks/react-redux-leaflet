@@ -1,24 +1,37 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { LmapLite } from 'react-redux-leaflet';
 import L from 'leaflet';
 import { Map } from 'immutable';
+import { connect } from 'react-redux';
+import CircularProgress from 'material-ui/CircularProgress';
 
-const LmapContainer = () => (
-  <LmapLite
-    lmapId="myMap"
-    defaultCenter={new Map({ x: 0, y: 0 })}
-    defaultZoom={2}
-    defaultLayers={[
-      L.tileLayer('osmtiles/{z}/{x}/{y}.png', {
-        attribution: `
-          &copy; <a href="http://osm.org/copyright">
-          OpenStreetMap</a> contributors
-        `,
-      }),
-    ]}
-    defaultMinZoom={0}
-    defaultMaxZoom={5}
-  />
+const mapStateToProps = ({ liteProps, lmapCycler }) =>
+  ({ liteProps, lmapCycler })
+;
+
+const LmapContainer = ({ liteProps, lmapCycler }) => (
+  lmapCycler.showMap ?
+    <LmapLite
+      { ...liteProps }
+      lmapId="myMap"
+      defaultCenter={new Map({ x: 0, y: 0 })}
+      defaultZoom={2}
+      defaultLayers={[
+        L.tileLayer('osmtiles/{z}/{x}/{y}.png', {
+          attribution: `
+            &copy; <a href="http://osm.org/copyright">
+            OpenStreetMap</a> contributors
+          `,
+        }),
+      ]}
+      defaultMinZoom={0}
+      defaultMaxZoom={5}
+    /> : <CircularProgress />
 );
 
-export default LmapContainer;
+LmapContainer.propTypes = {
+  liteProps: PropTypes.object.isRequired,
+  lmapCycler: PropTypes.object.isRequired,
+};
+
+export default (connect(mapStateToProps))(LmapContainer);

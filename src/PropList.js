@@ -7,6 +7,7 @@ import ContentClear from 'material-ui/svg-icons/content/clear';
 import Paper from 'material-ui/Paper';
 import { connect } from 'react-redux';
 import { setValue, unsetValue } from './actions/litePropActions';
+import { reloadMap } from './actions/lmapCyclerActions';
 
 const mapStateToProps = state => ({ liteProps: state.liteProps });
 
@@ -19,6 +20,7 @@ class PropList extends Component {
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClearClick = this.handleClearClick.bind(this);
     this.handleValueChange = this.handleValueChange.bind(this);
+    this.handleReloadClick = this.handleReloadClick.bind(this);
   }
 
   handleSearchChange(event) {
@@ -41,6 +43,10 @@ class PropList extends Component {
     }
   }
 
+  handleReloadClick() {
+    this.props.dispatch(reloadMap());
+  }
+
   render() {
     const filteredProps = Object.keys(liteProps).filter(pName =>
       pName.toLowerCase().indexOf(
@@ -59,6 +65,9 @@ class PropList extends Component {
           icon={<ContentClear />}
           onClick={this.handleClearClick}
         />
+        <FlatButton onClick={this.handleReloadClick}>
+          Reload map
+        </FlatButton>
         {
           filteredProps.map(pName => (
             <Controller
