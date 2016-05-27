@@ -2,11 +2,9 @@ import React, { PropTypes } from 'react';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
 function valueToRadio(val) {
-  console.log('vtr>', val);
   return val === undefined ? 'unset' : String(val);
 }
 function radioToValue(rval) {
-  console.log('rtv>', rval);
   return rval === 'unset' ? undefined : rval === 'true';
 }
 

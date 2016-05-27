@@ -3,6 +3,7 @@ import Controller from './Controller';
 import liteProps from './liteProps';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import ContentClear from 'material-ui/svg-icons/content/clear';
 import Paper from 'material-ui/Paper';
 import { connect } from 'react-redux';
@@ -48,8 +49,6 @@ class PropList extends Component {
   }
 
   render() {
-    console.log('lp>', this.props.liteProps);
-
     const filteredProps = Object.keys(liteProps).filter(pName =>
       pName.toLowerCase().indexOf(
         this.state.searchTerm.toLowerCase()
@@ -67,9 +66,9 @@ class PropList extends Component {
           icon={<ContentClear />}
           onClick={this.handleClearClick}
         />
-        <FlatButton onClick={this.handleReloadClick}>
+        <RaisedButton onClick={this.handleReloadClick}>
           Reload map
-        </FlatButton>
+        </RaisedButton>
         {
           filteredProps.map(pName => (
             <Controller
