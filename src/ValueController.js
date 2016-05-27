@@ -24,6 +24,7 @@ const ValueController = (props) => {
 
 ValueController.propTypes = {
   propName: PropTypes.string.isRequired,
+  propValue: PropTypes.any,
   type: PropTypes.string.isRequired,
   required: PropTypes.bool,
   possibleValues: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),

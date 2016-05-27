@@ -31,7 +31,7 @@ export default function litePropsReducer(state = defaultState, action) {
   switch (action.type) {
     case LITEPROPS_SET_PROP:
       return Object.assign({}, state, {
-        [action.name]: [action.value],
+        [action.name]: action.value,
       });
 
     case LITEPROPS_UNSET_PROP:

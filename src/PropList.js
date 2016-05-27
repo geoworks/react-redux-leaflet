@@ -6,7 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import ContentClear from 'material-ui/svg-icons/content/clear';
 import Paper from 'material-ui/Paper';
 import { connect } from 'react-redux';
-import { setValue, unsetValue } from './actions/litePropActions';
+import { setProp, unsetProp } from './actions/litePropActions';
 import { reloadMap } from './actions/lmapCyclerActions';
 
 const mapStateToProps = state => ({ liteProps: state.liteProps });
@@ -37,9 +37,9 @@ class PropList extends Component {
 
   handleValueChange(propName, newValue) {
     if (newValue === undefined) {
-      this.props.dispatch(unsetValue(propName));
+      this.props.dispatch(unsetProp(propName));
     } else {
-      this.props.dispatch(setValue(propName, newValue));
+      this.props.dispatch(setProp(propName, newValue));
     }
   }
 
@@ -48,6 +48,8 @@ class PropList extends Component {
   }
 
   render() {
+    console.log('lp>', this.props.liteProps);
+
     const filteredProps = Object.keys(liteProps).filter(pName =>
       pName.toLowerCase().indexOf(
         this.state.searchTerm.toLowerCase()
@@ -77,6 +79,7 @@ class PropList extends Component {
               searchTerm={this.state.searchTerm}
               onValueChange={this.handleValueChange}
               { ...liteProps[pName] }
+              propValue={this.props.liteProps[pName]}
             />
           ))
         }

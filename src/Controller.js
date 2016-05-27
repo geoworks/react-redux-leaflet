@@ -47,6 +47,7 @@ class Controller extends Component {
       style,
       searchTerm,
       propName,
+      propValue,
       descr,
       type,
       required,
@@ -75,6 +76,7 @@ class Controller extends Component {
               /> :
               <ValueController
                 propName={propName}
+                propValue={propValue}
                 type={type}
                 required={required}
                 possibleValues={possibleValues}
@@ -91,6 +93,7 @@ Controller.propTypes = {
   style: PropTypes.object,
   searchTerm: PropTypes.string,
   propName: PropTypes.string.isRequired,
+  propValue: PropTypes.any,
   descr: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   required: PropTypes.bool,
