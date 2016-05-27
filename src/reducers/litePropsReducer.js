@@ -5,11 +5,19 @@ import {
 
 import liteProps from '../liteProps';
 
+const getDefaultValue = propName => {
+  if (!liteProps[propName].possibleValues) {
+    return liteProps[propName].defaultValue;
+  }
+
+  return liteProps[propName].possibleValues[liteProps[propName].defaultValue];
+};
+
 const defaultState = Object.keys(liteProps)
   .filter(propName => liteProps[propName].defaultValue !== undefined)
   .reduce(
     (prev, cur) =>
-      Object.assign(prev, { [cur]: liteProps[cur].defaultValue }),
+      Object.assign(prev, { [cur]: getDefaultValue(cur) }),
     {}
   )
 ;

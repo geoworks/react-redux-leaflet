@@ -213,7 +213,6 @@ const liteProps = {
     leafletName: 'layers',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-layers',
     possibleValues: {
-      descr: '-- Missing property description --',
       '[]': [],
       "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']":
         () => [L.tileLayer('osmtiles/{z}/{x}/{y}.png')],
@@ -228,7 +227,6 @@ const liteProps = {
     leafletName: 'layers',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-layers',
     possibleValues: {
-      descr: '-- Missing property description --',
       '[]': [],
       "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']":
         [L.tileLayer('osmtiles/{z}/{x}/{y}.png')],
