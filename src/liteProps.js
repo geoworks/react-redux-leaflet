@@ -150,16 +150,14 @@ const liteProps = {
 
   center: {
     descr: '-- Missing property description --',
-    type: 'map',
-    subType: 'xy',
+    type: 'map_xy',
     leafletName: 'center',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-center',
   },
 
   defaultCenter: {
     descr: '-- Missing property description --',
-    type: 'map',
-    subType: 'xy',
+    type: 'map_xy',
     leafletName: 'center',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-center',
     defaultValue: new Map({ x: 30, y: 30 }),
@@ -244,16 +242,14 @@ const liteProps = {
 
   maxBounds: {
     descr: '-- Missing property description --',
-    type: 'map',
-    subType: 'x1y1x2y2',
+    type: 'map_x1y1x2y2',
     leafletName: 'maxBounds',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-maxbounds',
   },
 
   defaultMaxBounds: {
     descr: '-- Missing property description --',
-    type: 'map',
-    subType: 'x1y1x2y2',
+    type: 'map_x1y1x2y2',
     leafletName: 'maxBounds',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-maxbounds',
   },

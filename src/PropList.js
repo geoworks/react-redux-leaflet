@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Controller from './Controller';
 import liteProps from './liteProps';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import ContentClear from 'material-ui/svg-icons/content/clear';
 import Paper from 'material-ui/Paper';
+import { connect } from 'react-redux';
+import { setValue, unsetValue } from './actions/litePropActions';
+
+const mapStateToProps = state => ({ liteProps: state.liteProps });
 
 class PropList extends Component {
   constructor(props) {
@@ -14,6 +18,7 @@ class PropList extends Component {
     };
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClearClick = this.handleClearClick.bind(this);
+    this.handleValueChange = this.handleValueChange.bind(this);
   }
 
   handleSearchChange(event) {
@@ -26,6 +31,14 @@ class PropList extends Component {
     this.setState({
       searchTerm: '',
     });
+  }
+
+  handleValueChange(propName, newValue) {
+    if (newValue === undefined) {
+      this.props.dispatch(unsetValue(propName));
+    } else {
+      this.props.dispatch(setValue(propName, newValue));
+    }
   }
 
   render() {
@@ -53,6 +66,7 @@ class PropList extends Component {
               key={pName}
               propName={pName}
               searchTerm={this.state.searchTerm}
+              onValueChange={this.handleValueChange}
               { ...liteProps[pName] }
             />
           ))
@@ -69,4 +83,9 @@ class PropList extends Component {
   }
 }
 
-export default PropList;
+PropList.propTypes = {
+  liteProps: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
+
+export default (connect(mapStateToProps))(PropList);

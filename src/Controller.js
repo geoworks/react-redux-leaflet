@@ -1,6 +1,8 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 // import { Map } from 'immutable';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
+import EventDisplay from './EventDisplay';
+import ValueController from './ValueController';
 
 function decorateWithSearchTerm(text, searchTerm) {
   if (typeof searchTerm !== 'string' || searchTerm === '') {
@@ -27,29 +29,63 @@ function decorateWithSearchTerm(text, searchTerm) {
   );
 }
 
-const Controller = ({
-  style,
-  searchTerm,
-  propName,
-  descr,
-  type,
-  // required,
-  // leafletName,
-  // leafletDocUrl,
-  // possibleValues,
-  // defaultValue,
-}) => (
-  <Card style={style}>
-    <CardHeader
-      title={decorateWithSearchTerm(propName, searchTerm)}
-      subtitle={descr}
-    />
-    <CardText>
-      Type: <strong>{type.name}</strong>
-      Some prop card text here.
-    </CardText>
-  </Card>
-);
+class Controller extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      expanded: false,
+    };
+    this.handleExpandChange = this.handleExpandChange.bind(this);
+  }
+
+  handleExpandChange(newExpandedState) {
+    this.setState({ expanded: newExpandedState });
+  }
+
+  render() {
+    const {
+      style,
+      searchTerm,
+      propName,
+      descr,
+      type,
+      required,
+      // leafletName,
+      // leafletDocUrl,
+      possibleValues,
+      // defaultValue,
+      onValueChange,
+    } = this.props;
+
+    return (
+      <Card
+        style={style}
+      >
+        <CardHeader
+          title={decorateWithSearchTerm(propName, searchTerm)}
+          subtitle={descr}
+          actAsExpander
+          showExpandableButton
+        />
+        <CardText expandable>
+          {
+            type === 'function' ?
+              <EventDisplay
+                propName={propName}
+              /> :
+              <ValueController
+                propName={propName}
+                type={type}
+                required={required}
+                possibleValues={possibleValues}
+                onValueChange={onValueChange}
+              />
+          }
+        </CardText>
+      </Card>
+    );
+  }
+}
 
 Controller.propTypes = {
   style: PropTypes.object,
@@ -62,6 +98,7 @@ Controller.propTypes = {
   leafletDocUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   possibleValues: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   defaultValue: PropTypes.any,
+  onValueChange: PropTypes.func.isRequired,
 };
 
 export default Controller;
