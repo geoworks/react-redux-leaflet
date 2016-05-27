@@ -14,7 +14,7 @@ const liteProps = {
   },
 
   MapCreate: {
-    descr: 'Event fired after map DOM elemtn has been mounted and leaflet map has been created.',
+    descr: 'Event fired after map DOM element has been mounted and leaflet map has been created.',
     type: 'function',
     leafletName: false,
     leafletDocUrl: false,
@@ -160,7 +160,7 @@ const liteProps = {
     type: 'map_xy',
     leafletName: 'center',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-center',
-    defaultValue: new Map({ x: 30, y: 30 }),
+    defaultValue: new Map({ x: 0, y: 0 }),
   },
 
   zoom: {
@@ -175,6 +175,7 @@ const liteProps = {
     type: 'number',
     leafletName: 'zoom',
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-zoom',
+    defaultValue: 2,
   },
 
   minZoom: {
@@ -213,14 +214,12 @@ const liteProps = {
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-layers',
     possibleValues: {
       descr: '-- Missing property description --',
-      undefined,
       '[]': [],
       "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']":
         () => [L.tileLayer('osmtiles/{z}/{x}/{y}.png')],
       "[L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png']":
         () => [L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png')],
     },
-    defaultValue: 'undefined',
   },
 
   defaultLayers: {
@@ -230,12 +229,11 @@ const liteProps = {
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-layers',
     possibleValues: {
       descr: '-- Missing property description --',
-      undefined,
       '[]': [],
       "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']":
-        () => [L.tileLayer('osmtiles/{z}/{x}/{y}.png')],
+        [L.tileLayer('osmtiles/{z}/{x}/{y}.png')],
       "[L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png']":
-        () => [L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png')],
+        [L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png')],
     },
     defaultValue: "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']",
   },
