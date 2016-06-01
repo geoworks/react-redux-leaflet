@@ -66,20 +66,20 @@ export default class Changer {
   }
 
   runOpsOriginal() {
-    if (this.targetZoom && this.targetCenter) {
+    if (this.targetZoom !== undefined && this.targetCenter !== undefined) {
       const { targetCenter, targetZoom } = this;
       this.targetCenter = undefined;
       this.targetZoom = undefined;
       return doSetView(this.leafletMap, targetCenter, targetZoom);
     }
 
-    if (this.targetZoom) {
+    if (this.targetZoom !== undefined) {
       const { targetZoom } = this;
       this.targetZoom = undefined;
       return doSetZoom(this.leafletMap, targetZoom);
     }
 
-    if (this.targetCenter) {
+    if (this.targetCenter !== undefined) {
       const { targetCenter } = this;
       this.targetCenter = undefined;
       return doSetCenter(this.leafletMap, targetCenter);
