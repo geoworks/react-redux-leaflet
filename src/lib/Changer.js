@@ -46,10 +46,10 @@ export default class Changer {
             return operation.do(this.leafletMap);
 
           case 'op':
-            if (operation.op.targetZoom) {
+            if (operation.op.targetZoom !== undefined) {
               this.targetZoom = operation.op.targetZoom;
             }
-            if (operation.op.targetCenter) {
+            if (operation.op.targetCenter !== undefined) {
               this.targetCenter = operation.op.targetCenter;
             }
             return this;
