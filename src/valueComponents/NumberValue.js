@@ -52,7 +52,7 @@ class NumberValue extends Component {
 
   render() {
     const {
-      propName, propValue, type, required, possibleValues, onValueChange,
+      /* propName, */propValue, /* type, required, possibleValues, onValueChange,*/
     } = this.props;
 
     let errorText;
