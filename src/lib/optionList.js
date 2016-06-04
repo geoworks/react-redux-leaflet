@@ -122,7 +122,7 @@ const optionList = {
   maxBounds: {
     controlledName: 'maxBounds',
     defaultName: 'defaultMaxBounds',
-    propType: ImmutablePropTypes.mapOf({
+    propType: ImmutablePropTypes.contains({
       xMin: PropTypes.number,
       yMin: PropTypes.number,
       xMax: PropTypes.number,
