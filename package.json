@@ -1,6 +1,6 @@
 {
   "name": "react-redux-leaflet",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Use Leaflet seamlessly in a react/redux powered app",
   "main": "index.js",
   "engines": { "node" : ">=4.0.0" },
