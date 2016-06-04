@@ -214,11 +214,12 @@ const liteProps = {
     leafletDocUrl: 'http://leafletjs.com/reference-1.0.0.html#map-layers',
     possibleValues: {
       '[]': [],
-      "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']":
+      "[L.tileLayer('osmtiles/{z}/{x}/{y}.png')]":
         [L.tileLayer('osmtiles/{z}/{x}/{y}.png')],
       "[L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png']":
         [L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png')],
     },
+    defaultValue: "[L.tileLayer('osmtiles/{z}/{x}/{y}.png')]",
   },
 
   defaultLayers: {
@@ -233,7 +234,7 @@ const liteProps = {
       "[L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png']":
         [L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png')],
     },
-    defaultValue: "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']",
+    defaultValue: undefined,
   },
 
   maxBounds: {
