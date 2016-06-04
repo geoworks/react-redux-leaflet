@@ -42,6 +42,7 @@ export default function compare(oldState, newState) {
     'minZoom',
     'maxZoom',
     'maxBounds',
+    'layers', // todo: more sophisticated logic for layers probably required
   ].forEach(valueName => {
     ops = ops.push(...controlSimpleValue(
       oldState[valueName],
@@ -49,8 +50,6 @@ export default function compare(oldState, newState) {
       controllers[valueName]
     ));
   });
-
-  // todo: layers
 
   return ops;
 }
