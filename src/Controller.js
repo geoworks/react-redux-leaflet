@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import EventDisplay from './EventDisplay';
 import ValueController from './ValueController';
+import { red500 } from 'material-ui/styles/colors';
 
 function decorateWithSearchTerm(text, searchTerm) {
   if (typeof searchTerm !== 'string' || searchTerm === '') {
@@ -61,7 +62,7 @@ class Controller extends Component {
     const patchedStyle = Object.assign({}, style, {
       backgroundColor:
         propValue && propValue.isEvent && propValue.highlighted ?
-          'red' : undefined,
+          red500 : undefined,
       transition: 'background-color 0.5s ease',
     });
 
