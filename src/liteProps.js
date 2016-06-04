@@ -215,9 +215,9 @@ const liteProps = {
     possibleValues: {
       '[]': [],
       "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']":
-        () => [L.tileLayer('osmtiles/{z}/{x}/{y}.png')],
-      "[L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png']":
-        () => [L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png')],
+        [L.tileLayer('osmtiles/{z}/{x}/{y}.png')],
+      "[L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png']":
+        [L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png')],
     },
   },
 
@@ -230,8 +230,8 @@ const liteProps = {
       '[]': [],
       "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']":
         [L.tileLayer('osmtiles/{z}/{x}/{y}.png')],
-      "[L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png']":
-        [L.tileLayer('{s}.tiles.osm.org/{z}/{x}/{y}.png')],
+      "[L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png']":
+        [L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png')],
     },
     defaultValue: "[L.tileLayer('osmtiles/{z}/{x}/{y}.png']",
   },
