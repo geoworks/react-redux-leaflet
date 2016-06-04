@@ -58,9 +58,16 @@ class Controller extends Component {
       onValueChange,
     } = this.props;
 
+    const patchedStyle = Object.assign({}, style, {
+      backgroundColor:
+        propValue && propValue.isEvent && propValue.highlighted ?
+          'red' : undefined,
+      transition: 'background-color 0.5s ease',
+    });
+
     return (
       <Card
-        style={style}
+        style={Object.assign(patchedStyle)}
       >
         <CardHeader
           title={decorateWithSearchTerm(propName, searchTerm)}
@@ -73,6 +80,7 @@ class Controller extends Component {
             type === 'function' ?
               <EventDisplay
                 propName={propName}
+                propValue={propValue}
               /> :
               <ValueController
                 propName={propName}
