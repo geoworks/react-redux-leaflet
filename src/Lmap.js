@@ -65,7 +65,7 @@ class Lmap extends Component {
   render() {
     const {
       lmapId, lmaps, enableControl = false,
-      dispatch, ...otherProps,
+      dispatch, otherInitOptions, ...otherProps,
     } = this.props;
     const lmapState = lmaps.get(lmapId);
     let propsToPass = lmaps.get(lmapId) ?
@@ -82,13 +82,14 @@ class Lmap extends Component {
     ;
     return (
       <LmapLite
-        { ...propsToPass }
+        {...propsToPass}
         isAnimating={isAnimating}
         lmapId={lmapId}
         dispatch={dispatch}
         onMapCreate={this.handleMapCreate}
         onUnload={this.handleMapDestroy}
         disableControl={!enableControl}
+        otherInitOptions={otherInitOptions}
       />
     );
   }
@@ -101,6 +102,7 @@ Lmap.propTypes = Object.assign(
     lmapId: PropTypes.string.isRequired,
     onMapCreate: PropTypes.func,
     enableControl: PropTypes.bool,
+    otherInitOptions: PropTypes.object,
   },
   Object.keys(eventList).reduce(
     (prev, cur) => Object.assign(prev, { [cur]: PropTypes.func }), {}
