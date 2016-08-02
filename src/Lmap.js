@@ -103,6 +103,7 @@ Lmap.propTypes = Object.assign(
     onMapCreate: PropTypes.func,
     enableControl: PropTypes.bool,
     otherInitOptions: PropTypes.object,
+    defaultDisableEventHooks: PropTypes.arrayOf(PropTypes.string),
   },
   Object.keys(eventList).reduce(
     (prev, cur) => Object.assign(prev, { [cur]: PropTypes.func }), {}
