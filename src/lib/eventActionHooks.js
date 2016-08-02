@@ -17,7 +17,6 @@ import {
   setBounds,
 } from '../actionCreators';
 
-/* TODO */ /* eslint-disable no-unused-vars */
 const eventActionHooks = {
   onResize: (orgEvent, lmapId) => ([
     mapResized(lmapNss.lmaps[lmapId].leafletMap.getSize(), lmapId),
