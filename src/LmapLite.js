@@ -10,7 +10,7 @@ import compare from './lib/compare';
 import Changer from './lib/Changer';
 
 function calcDefaultMapOptions(props) {
-  const options = {};
+  let options = {};
   Object.keys(optionList).forEach(optName => {
     if (props[optionList[optName].controlledName]) {
       options[optName] = props[optionList[optName].controlledName];
@@ -29,6 +29,12 @@ function calcDefaultMapOptions(props) {
       [options.maxBounds.get('xMin'), options.maxBounds.get('yMin')],
       [options.maxBounds.get('xMax'), options.maxBounds.get('yMax')],
     ];
+  }
+  if (props.otherInitOptions) {
+    options = {
+      ...options,
+      ...props.otherInitOptions,
+    };
   }
   return options;
 }
@@ -124,6 +130,7 @@ LmapLite.propTypes = Object.assign(
     onMapCreate: PropTypes.func,
     disableControl: PropTypes.bool,
     isAnimating: PropTypes.bool,
+    otherInitOptions: PropTypes.object,
   },
   Object.keys(eventList).reduce(
     (prev, cur) => Object.assign(prev, { [cur]: PropTypes.func }), {}
