@@ -1,13 +1,13 @@
 {
   "name": "react-redux-leaflet",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Use Leaflet seamlessly in a react/redux powered app",
   "main": "index.js",
   "engines": { "node" : ">=4.0.0" },
   "dependencies": {
     "debounce": "^1.0.0",
     "immutable": "^3.8.1",
-    "leaflet": "1.0.0-rc.1",
+    "leaflet": "1.0.0-rc.2",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-immutable-proptypes": "^1.7.1",
