@@ -12,11 +12,11 @@ import Changer from './lib/Changer';
 function calcDefaultMapOptions(props) {
   let options = {};
   Object.keys(optionList).forEach(optName => {
-    if (props[optionList[optName].controlledName]) {
+    if (props.hasOwnProperty(optionList[optName].controlledName)) {
       options[optName] = props[optionList[optName].controlledName];
       return;
     }
-    if (props[optionList[optName].defaultName]) {
+    if (props.hasOwnProperty(optionList[optName].defaultName)) {
       options[optName] = props[optionList[optName].defaultName];
       return;
     }
