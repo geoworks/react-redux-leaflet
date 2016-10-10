@@ -1,6 +1,6 @@
 {
   "name": "react-redux-leaflet",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "Use Leaflet seamlessly in a react/redux powered app",
   "main": "index.js",
   "engines": {
@@ -42,13 +42,13 @@
     "test": "eslint .",
     "example": "node example/server",
     "build": "webpack",
-    "dopublish": "./scripts/publish"
+    "dopublish": "bash -c \"./scripts/publish\""
   },
   "author": "Sergey Burmisov (github.com/burmisov)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/burmisov/react-redux-leaflet"
+    "url": "https://github.com/geoworks/react-redux-leaflet"
   },
   "keywords": [
     "leaflet",
