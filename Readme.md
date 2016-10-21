@@ -1,35 +1,11 @@
-WORK IN PROGRESS
-================
+react-redux-leaflet
+===================
 
-Status
-------
+Full low-level Leaflet power + React + Redux
+with all the necessary boilerplate done for you.
+Helps a lot and gets out of the way once you need to access Leaflet guts.
 
-- [x] Core `<LmapLite>` react component
-- [x] `defaultLayers` prop support
-- [x] `layers` prop support
-- [x] Simple usage example
-- [x] Core `<Lmap>` react component connected to Redux store
-- [x] Basic actions & action creators
-- [x] Redux store works and updating
-- [x] Advanced actions & action creators for Redux
-- [x] Advanced map state to store (bounds etc)
-- [x] zoomAround, etc
-- [ ] Selector creators
-- [ ] More examples
-- [ ] Tests
-
-Docs plan:
-- [x] Create a local tiled map storage
-- [x] Create gh-pages site stub
-- [ ] API Overview
-- [ ] LmapLite component
-- [ ] Lmap component
-- [ ] Redux store structure
-- [ ] Action list
-- [ ] NSS data
-- [ ] Leaflet Map API --> react-redux-leaflet API mappings
-- [ ] Full working LmapLite component with all props to change & events to subscribe to.
-- [ ] Full working Lmap component with all props & events & action creators.
+Quite usable but badly documented :)
 
 How to run the example
 ----------------------
