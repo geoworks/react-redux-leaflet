@@ -9,6 +9,13 @@ const optionList = {
     propType: PropTypes.bool,
   },
 
+  // leaflet-editable
+  editable: {
+    controlledName: 'editable',
+    defaultName: 'defaultEditable',
+    propType: PropTypes.bool,
+  },
+
   // Control options
 
   // http://leafletjs.com/reference-1.0.0.html#map-attributioncontrol
